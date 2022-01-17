@@ -117,3 +117,9 @@ class Square extends React.Component {
 ```
 
 Before:
+
+![](https://github.com/DrVicki/React-Tic-Tac-Toe/blob/main/tictac-images/tictac-empty.png)
+
+After: You should see a number in each square in the rendered output.
+
+
