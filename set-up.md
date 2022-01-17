@@ -122,4 +122,114 @@ Before:
 
 After: You should see a number in each square in the rendered output.
 
+![](https://github.com/DrVicki/React-Tic-Tac-Toe/blob/main/tictac-images/tictac-numbers.png)
+
+**Congratulations!** You’ve just “passed a prop” from a parent ```Board``` component to a child ```Square``` component. Passing props is how information flows in React apps, from parents to children.
+
+## Making an Interactive Component
+
+Let’s fill the ```Square``` component with an “```X```” when we click it. First, change the ```button``` tag returned from the ```Square``` component’s ```render()``` function to this:
+
+```
+class Square extends React.Component {
+  render() {
+    return (
+      <button className="square" onClick={function() { console.log('click'); }}>
+        {this.props.value}
+      </button>
+    );
+  }
+}
+```
+
+If you click on a Square now, you should see ‘click’ in your browser’s ```devtools``` console.
+
+**Note**
+
+To save typing and avoid the confusing behavior of this, we will use the ```arrow``` function syntax for event handlers here and further below:
+
+```
+class Square extends React.Component {
+ render() {
+   return (
+     <button className="square" onClick={() => console.log('click')}>
+       {this.props.value}
+     </button>
+   );
+ }
+}
+```
+
+Notice how with ```onClick={() => console.log('click')}```, we’re passing a function as the ```onClick``` prop. 
+  - React will only call this function after a click. Forgetting ```() =>``` and writing ```onClick={console.log('click')}``` is a common mistake, and would fire every time the component re-renders.
+
+As a next step, we want the ```Square``` component to “remember” that it got clicked, and fill it with an “```X```” mark. To “remember” things, components use ```state```.
+
+React components can have **state** by setting ```this.state``` in their constructors. ```this.state``` should be considered as private to a React component it’s defined in. Let’s store the current value of the Square in ```this.state```, and change it when the Square is clicked.
+
+First, we’ll add a constructor to the class to initialize the state:
+
+```
+class Square extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+  }
+
+  render() {
+    return (
+      <button className="square" onClick={() => console.log('click')}>
+        {this.props.value}
+      </button>
+    );
+  }
+}
+```
+
+**Note**
+
+In [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), you need to always call ```super``` when defining the constructor of a subclass. All React component classes that have a ```constructor``` should start with a ```super(props)``` call.
+
+Now we’ll change the Square’s ```render``` method to display the current state’s value when clicked:
+
+  - Replace ```this.props.value``` with ```this.state.value``` inside the ```<button>``` tag.
+  - Replace the ```onClick={...}``` event handler with ```onClick={() => this.setState({value: 'X'})}```.
+  - Put the ```className``` and ```onClick``` props on separate lines for better readability.
+
+After these changes, the ```<button>``` tag returned by the Square’s ```render``` method looks like this:
+
+```
+class Square extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+  }
+
+  render() {
+    return (
+      <button
+        className="square"
+        onClick={() => this.setState({value: 'X'})}
+      >
+        {this.state.value}
+      </button>
+    );
+  }
+}
+```
+
+By calling ```this.setState``` from an ```onClick``` handler in the Square’s ```render``` method, we tell React to re-render that Square whenever its ```<button>``` is clicked.
+  - After the update, the Square’s ```this.state.value``` will be '```X```', so we’ll see the **X** on the game board. 
+  - If you click on any Square, an X should show up.
+
+When you call ```setState``` in a component, React automatically updates the child components inside of it, too.
+
+## Developer Tools
+
+The React ```Devtools``` extension for Chrome and Firefox lets you inspect a React component tree with your browser’s developer tools.
+
 
