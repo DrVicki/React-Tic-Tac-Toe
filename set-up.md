@@ -230,6 +230,14 @@ When you call ```setState``` in a component, React automatically updates the chi
 
 ## Developer Tools
 
-The React ```Devtools``` extension for Chrome and Firefox lets you inspect a React component tree with your browser’s developer tools.
+The React ```Devtools``` extension for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) let you inspect a React component tree with your browser’s developer tools.
+
+![](https://github.com/DrVicki/React-Tic-Tac-Toe/blob/main/tictac-images/devtools.png)
+
+The React DevTools let you check the ```props``` and the ```state``` of your React components.
+
+After installing React ```DevTools```, you can right-click on any element on the page, click “Inspect” to open the developer tools, and the React tabs (“⚛️ Components” and “⚛️ Profiler”) will appear as the last tabs to the right. Use “⚛️ Components” to inspect the component tree.
+
+However, note there are a few extra steps to get it working with CodePen:
 
 
