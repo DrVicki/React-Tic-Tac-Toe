@@ -1,4 +1,4 @@
-Here are two ways to complete this tutorial: 
+There are two ways to complete this tutorial: 
   - you can either write the code in your browser, or 
   - you can set up a local development environment on your computer.
 
